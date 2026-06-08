@@ -3,7 +3,7 @@ import { useState } from "react";
 export const ThemeContext =createContext();
 export const ThemeProvider =({children})=>{
 
-    const [theme,setTheme]=useState('#b61616');
+    const [theme,setTheme]=useState('#eeff05');
 
     const handleChengeTheme = (event)=>{
 setTheme(event.target.value)
@@ -50,7 +50,7 @@ const prevImage=()=>{
     const finalColor = isDark ? "black": "white"
       const btnTheme ={
     backgroundColor:theme,
-border:'none',
+   border: `1px solid ${theme}`,
 transition:"all 0.3s ease"
   }
 return(

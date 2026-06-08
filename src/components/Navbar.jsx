@@ -7,11 +7,8 @@ function AppNavbar() {
 
 
   return (
-    <Navbar  expand="lg" style={{ 
-    color:finalColor,
-      backgroundColor: finalBlurCard,
-      backdropFilter: "blur(10px)",  
-      transition: "all 0.7s ease" 
+    <Navbar  expand="lg " style={{ 
+backgroundColor: "transparent"
     }}>
     <Container>
         <Navbar.Brand
@@ -27,7 +24,7 @@ function AppNavbar() {
         </Navbar.Brand>
         <h1>
           Hadil Alchamma
-          <p style={{ fontSize: "12px", color: "#00000094" }}>
+          <p style={{ fontSize: "12px", color: "#00000094" ,color:finalColor,transition:'all 0.3s ease-in' }}>
             React Advanced Hooks-Game-Router-LocalStorage
           </p>
         </h1>
@@ -35,14 +32,14 @@ function AppNavbar() {
         <Navbar.Toggle aria-colcount="main-nav" />
 
         <Navbar.Collapse id="main-nav">
-          <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/">
+          <Nav className="ms-auto" >
+            <Nav.Link style={{color:finalColor,}} as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/play">
+            <Nav.Link style={{color:finalColor,}} as={Link} to="/play">
               Play
             </Nav.Link>
-            <Nav.Link as={Link} to="/leaderboard">
+            <Nav.Link style={{color:finalColor,}} as={Link} to="/leaderboard">
               Leaderboard
             </Nav.Link>
           </Nav>
