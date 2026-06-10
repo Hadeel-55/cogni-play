@@ -7,6 +7,7 @@ import AppNavbar from "./components/Navbar";
 import Home from "./components/Home";
 import Play from "./components/Play";
 import Leaderboard from "./components/Leaderboard";
+import { LeaderboardProvider } from "./context/LeaderboardContext";
 
 function App() {
   const { imageIndex, images, finalColor,finalBlurCard} = useContext(ThemeContext);

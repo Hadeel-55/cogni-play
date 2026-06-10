@@ -1,4 +1,4 @@
-import { children, createContext } from "react";
+import { createContext } from "react";
 import { useState } from "react";
 export const ThemeContext =createContext();
 export const ThemeProvider =({children})=>{

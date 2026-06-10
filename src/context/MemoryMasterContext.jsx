@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from "react";
-
+import { createContext, useState, useEffect,useContext } from "react";
+import { LeaderboardContext } from "./LeaderboardContext";
 const allCards = [
   { id: 1, color: "#f1c40f", emoji: "⭐", name: "star" },
   { id: 2, color: "#e67e22", emoji: "🔥", name: "fire" },
@@ -19,6 +19,8 @@ const difficutyLevels = {
 
 export const MemoryMasterContext = createContext();
 export const MemoryMasterProvider = ({ children }) => {
+
+  const { handleFinish, setIsTimerActive, setTimeLeft } = useContext(LeaderboardContext);
   const [difficulty, setDifficulty] = useState("normal");
   const [cards, setCards] = useState([]);
 
@@ -52,16 +54,19 @@ export const MemoryMasterProvider = ({ children }) => {
     setGameStatus("idle");
     setActiveCardId(null);
     setIsDisplaySequence(false);
+    setIsTimerActive(false);
   };
 
 const startGame =()=>{
   setGameStatus('playing');
   setLevel(1);
+  setTimeLeft(60);
+  setIsTimerActive(true);
   ganerateNextSequence([],1);
 }
 
 const ganerateNextSequence=(currentSeq , nextLevel)=>{
-  const cardCount =difficutyLevels[difficulty].count;
+  const cardCount = difficutyLevels[difficulty].count;
   const nextSeq = [...currentSeq];
 
 
@@ -90,7 +95,7 @@ if(index >= seq.length){
   clearInterval(interval);
   setTimeout(()=>{
     setIsDisplaySequence(false)
-  },800)
+  },500)
 }
   },1000)
 }

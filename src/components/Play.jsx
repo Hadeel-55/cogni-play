@@ -5,6 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import { MemoryMasterContext } from "../context/MemoryMasterContext";
 import { PlayerContext } from "../context/PlayerContext";
 import { ColorFocusGameContext } from "../context/ColorFocusGameContext";
+import { LeaderboardContext } from "../context/LeaderboardContext";
 
 function Play() {
   const { profileTemporary, timer } = useContext(PlayerContext);
@@ -31,8 +32,9 @@ function Play() {
     level,
     maxLevels,
     difficutyLevels,
-    difficulty
+    difficulty,
   } = useContext(MemoryMasterContext);
+  const { handleFinish, handleLeaderboard } = useContext(LeaderboardContext);
 
   const navigate = useNavigate();
   const minutes = Math.floor(timer / 60);
@@ -45,7 +47,7 @@ function Play() {
   }, [timer, navigate]);
 
   return (
-    <Container>
+    <Container className="pb-5">
       <Row>
         <Col>
           <Card
@@ -68,9 +70,8 @@ function Play() {
                   <Badge
                     className="text-align-center bg-warning py-2 px-3 "
                     style={{ fontSize: "0.9rem" }}
-                    
                   >
-                  {difficutyLevels[difficulty]?.name}
+                    {difficutyLevels[difficulty]?.name}
                   </Badge>
                 </Col>
               </Row>
@@ -151,13 +152,13 @@ function Play() {
           gameStatus === "lost" ||
           gameStatus === "won" ? (
             <Button
-            style={{
-                      backgroundColor: "transparent",
-                      border: btnTheme.border,
-                      backdropFilter: "blur(15px)",
-                      color: finalColor,
-                      transition: "all 0.3s ease-in",
-                    }}
+              style={{
+                backgroundColor: "transparent",
+                border: btnTheme.border,
+                backdropFilter: "blur(15px)",
+                color: finalColor,
+                transition: "all 0.3s ease-in",
+              }}
               className="control-btn start-btn rounded-3 "
               onClick={startGame}
             >
@@ -165,13 +166,13 @@ function Play() {
             </Button>
           ) : (
             <Button
-            style={{
-                      backgroundColor: "transparent",
-                      border: btnTheme.border,
-                      backdropFilter: "blur(15px)",
-                      color: finalColor,
-                      transition: "all 0.3s ease-in",
-                    }}
+              style={{
+                backgroundColor: "transparent",
+                border: btnTheme.border,
+                backdropFilter: "blur(15px)",
+                color: finalColor,
+                transition: "all 0.3s ease-in",
+              }}
               className="control-btn reset-btn rounded-3"
               onClick={resetGame}
             >
@@ -247,6 +248,38 @@ function Play() {
           </Card>
         </Col>
       </Row>
+      <div className="d-flex gap-3">
+        <Button
+          onClick={handleLeaderboard}
+          style={{
+            backgroundColor: "transparent",
+            border: btnTheme.border,
+            backdropFilter: "blur(15px)",
+            color: finalColor,
+            transition: "all 0.3s ease-in",
+          }}
+        >
+          Learderboard
+        </Button>
+        <Button
+          onClick={() => {
+            if (gameStatus === 'won') {
+              handleFinish(true);
+            } else {
+              handleFinish(false);
+            }
+          }}
+          style={{
+            backgroundColor: "transparent",
+            border: btnTheme.border,
+            backdropFilter: "blur(15px)",
+            color: finalColor,
+            transition: "all 0.3s ease-in",
+          }}
+        >
+          Finish & Save
+        </Button>
+      </div>
     </Container>
   );
 }
