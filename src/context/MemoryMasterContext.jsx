@@ -97,7 +97,7 @@ if(index >= seq.length){
     setIsDisplaySequence(false)
   },500)
 }
-  },1000)
+ },1000)
 }
 
 const handleCardClick=(cardId)=>{

@@ -71,9 +71,9 @@ export const LeaderboardProvider = ({ children }) => {
 console.log("Game Status Received:", gameStatus);
     const isWon =
       String(gameStatus).toLocaleLowerCase === "won" || gameStatus === true;
-
-    addGameSession(isWon);
-
+if(isWon){
+   addGameSession(isWon);
+}
     navigate("/leaderboard");
   };
 

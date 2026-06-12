@@ -25,6 +25,7 @@ if(localProfile){
     e.preventDefault();
     setProfileSaved(profileTemporary);
     localStorage.setItem("playerProfile", JSON.stringify(profileTemporary));
+    navigate('/play')
   }
   const [timer ,setTimer]=useState(60);
   const navigate = useNavigate();
